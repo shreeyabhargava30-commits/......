@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -24,9 +24,9 @@ body {
 /* Floating Hearts */
 .heart {
   position: absolute;
-  color: rgba(255, 77, 109, 0.6);
   font-size: 18px;
   animation: floatUp 8s linear infinite;
+  opacity: 0.7;
 }
 
 @keyframes floatUp {
@@ -41,7 +41,7 @@ body {
   }
 }
 
-/* Twinkling Stars */
+/* Stars */
 .star {
   position: absolute;
   width: 2px;
@@ -62,7 +62,6 @@ body {
   border-radius: 20px;
   text-align: center;
   width: 320px;
-  position: relative;
   z-index: 2;
   box-shadow: 0 15px 35px rgba(0,0,0,0.25);
   animation: popIn 0.6s ease-out;
@@ -100,11 +99,6 @@ button {
 #yesBtn {
   background-color: #ff4d6d;
   color: white;
-  transition: transform 0.2s;
-}
-
-#yesBtn:hover {
-  transform: scale(1.1);
 }
 
 #noBtn {
@@ -112,7 +106,6 @@ button {
   color: #333;
   position: absolute;
   left: 150px;
-  top: 0;
 }
 </style>
 </head>
@@ -121,7 +114,6 @@ button {
 
 <div class="card">
   <h1>💘 Aryan, will you be my Valentine? 💘</h1>
-
   <div class="buttons" id="buttonArea">
     <button id="yesBtn" onclick="yesClick()">Yes ❤️</button>
     <button id="noBtn">No 😢</button>
@@ -132,8 +124,8 @@ button {
 const noBtn = document.getElementById("noBtn");
 const buttonArea = document.getElementById("buttonArea");
 
-/* Moving No Button */
-setInterval(() => {
+/* Move NO button only on hover/touch */
+function moveNo() {
   const areaWidth = buttonArea.offsetWidth;
   const areaHeight = buttonArea.offsetHeight;
   const maxX = areaWidth - noBtn.offsetWidth;
@@ -141,9 +133,12 @@ setInterval(() => {
 
   noBtn.style.left = Math.random() * maxX + "px";
   noBtn.style.top = Math.random() * maxY + "px";
-}, 700);
+}
 
-/* Yes Click */
+noBtn.addEventListener("mouseover", moveNo);
+noBtn.addEventListener("touchstart", moveNo);
+
+/* YES click */
 function yesClick() {
   document.body.innerHTML = `
     <div style="
@@ -163,7 +158,7 @@ function yesClick() {
   `;
 }
 
-/* Generate Hearts */
+/* Hearts */
 for (let i = 0; i < 20; i++) {
   const heart = document.createElement("div");
   heart.className = "heart";
@@ -173,7 +168,7 @@ for (let i = 0; i < 20; i++) {
   document.body.appendChild(heart);
 }
 
-/* Generate Stars */
+/* Stars */
 for (let i = 0; i < 40; i++) {
   const star = document.createElement("div");
   star.className = "star";
@@ -186,3 +181,4 @@ for (let i = 0; i < 40; i++) {
 
 </body>
 </html>
+
