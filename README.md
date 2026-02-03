@@ -44,9 +44,9 @@ body {
 /* Stars */
 .star {
   position: absolute;
-  width: 2px;
-  height: 2px;
-  background: white;
+  width: 20px;
+  height: 20px;
+  background: white yellow ;
   border-radius: 50%;
   animation: twinkle 3s infinite ease-in-out;
 }
